@@ -1,4 +1,4 @@
-﻿namespace Amadeus.Nine;
+﻿namespace Amadeus.Nine.Options;
 
 public sealed record AmadeusCredentials(
     string ApiKey,
