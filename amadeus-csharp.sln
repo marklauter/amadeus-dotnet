@@ -8,9 +8,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sample", "sample\sample.csproj", "{D6E96E62-2ECB-4B57-8859-F4AD731D9657}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{85623C07-D863-4656-A8D2-D235513A1B67}"
-	ProjectSection(SolutionItems) = preProject
-		.travis.yml = .travis.yml
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "amadeus-integration-test", "amadeus-integration-test\amadeus-integration-test.csproj", "{923C0D46-BA02-48CE-8598-31D9AC205D9D}"
 EndProject

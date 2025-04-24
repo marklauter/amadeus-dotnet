@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <PackageId>amadeus-dotnet</PackageId>
     <PackageVersion>30.0</PackageVersion>
 	<Version>3.0.0</Version>
@@ -32,7 +32,11 @@
     <DocumentationFile>bin\Release\netstandard2.0\amadeus.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include=".github\images\" />
+    <Compile Remove=".github\**" />
+    <EmbeddedResource Remove=".github\**" />
+    <None Remove=".github\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="client\" />
     <Folder Include="exceptions\" />
     <Folder Include="referenceData\urls\" />
