@@ -8,6 +8,5 @@ public sealed class AmadeusClient(
     IOptions<AmadeusOptions> options,
     ILogger<AmadeusClient> logger)
 {
-    public const string ApiVersion = "3.0.0";
 
 }

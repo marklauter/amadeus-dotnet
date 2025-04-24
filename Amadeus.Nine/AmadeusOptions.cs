@@ -3,4 +3,7 @@
 public sealed record AmadeusOptions(
     Uri Host,
     Version Version,
-    AmadeusCredentials Credentials);
+    AmadeusCredentials Credentials)
+{
+    public const string SectionName = "Amadeus";
+}
