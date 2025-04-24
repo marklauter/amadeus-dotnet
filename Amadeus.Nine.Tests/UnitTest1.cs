@@ -9,8 +9,8 @@ public class UnitTest1
     private readonly IConfiguration configuration = new ConfigurationBuilder()
         .AddInMemoryCollection(new Dictionary<string, string>
         {
-            { "AmadeusOptions:Uri", "test.api.amadeus.com" },
-            { "AmadeusOptions:Version", "3.0.0" },
+            { "Amadeus:Host", "test.api.amadeus.com" },
+            { "Amadeus:Version", "3.0.0" },
         }!)
         .AddUserSecrets(Assembly.GetExecutingAssembly(), true, false)
         .Build();

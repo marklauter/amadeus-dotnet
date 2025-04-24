@@ -9,12 +9,19 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        _ = services
-            .Configure<AmadeusOptions>(configuration.GetSection(AmadeusOptions.SectionName))
-            .AddLogging()
-            .AddHttpClient<AmadeusClient>();
+
+        _ = services.AddHttpClient<AmadeusClient>();
+        _ = services.AddHttpClient<TokenProvider>();
         // todo: configure the client message handler to deal with tokens
 
-        return services;
+        var options = configuration
+            .GetRequiredSection(AmadeusOptions.SectionName)
+            .Get<AmadeusOptions>()
+            ?? throw new InvalidOperationException($"can't read {nameof(AmadeusOptions)} in section {AmadeusOptions.SectionName}");
+
+        return services
+            .Configure<AmadeusOptions>(configuration.GetSection(AmadeusOptions.SectionName))
+            .AddSingleton(options.Credentials)
+            .AddLogging();
     }
 }
