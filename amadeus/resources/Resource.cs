@@ -79,7 +79,7 @@ namespace amadeus.resources
             var result = GetType().ToString() + "[";
             var propertyStrings = from prop in GetType().GetProperties()
                                   select $"{prop.Name}={prop.GetValue(this)}";
-            result += string.Join(", ", propertyStrings);
+            result += String.Join(", ", propertyStrings);
             result += "]";
             return result;
         }

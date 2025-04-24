@@ -98,7 +98,7 @@ namespace amadeus.shopping
 
         /// <summary>
         /// Convenience method for calling <code>post</code> without any parameters.
-        /// <see cref="postFlightOffers(string)"/>
+        /// <see cref="postFlightOffers(String)"/>
         /// </summary>
         /// <returns>an API response object</returns>
         public FlightOffer[] postFlightOffers()

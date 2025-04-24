@@ -101,7 +101,7 @@ namespace amadeus.booking
 
         /// <summary>
         /// Convenience method for calling <code>post</code> without any parameters.
-        /// <see cref="postFlightOrderManagement(string)"/>
+        /// <see cref="postFlightOrderManagement(String)"/>
         /// </summary>
         /// <returns>an API response object</returns>
         public FlightOrderCreateQuery postFlightOrderManagement()

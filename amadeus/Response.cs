@@ -203,7 +203,7 @@ namespace amadeus
         // Checks if the response has a body
         internal bool hasBody()
         {
-            return !(string.IsNullOrEmpty(body));
+            return !(String.IsNullOrEmpty(body));
         }
 
     }

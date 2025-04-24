@@ -34,7 +34,7 @@ namespace amadeus
         /// <summary>
         /// A helper module for making generic GET _requests calls. It is used by
         /// every namespaced API GET method.
-        /// <see cref="get(string, Params)"/>  
+        /// <see cref="get(String, Params)"/>  
         /// </summary>
         /// <returns>Response</returns>
         /// <param name="path">Path.</param>
@@ -93,7 +93,7 @@ namespace amadeus
         /// <summary>
         /// A helper module for making generic DELETE _requests calls. It is used by
         /// every namespaced API DELETE method.
-        /// <see cref="delete(string, Params)"/>  
+        /// <see cref="delete(String, Params)"/>  
         /// </summary>
         /// <returns>Response</returns>
         /// <param name="path">Path.</param>
@@ -105,7 +105,7 @@ namespace amadeus
         /// <summary>
         /// A helper module for making generic POST _requests calls. It is used by
         /// every namespaced API POST method.
-        /// <see cref="post(string, Params)"/>
+        /// <see cref="post(String, Params)"/>
         /// </summary>
         /// <returns>A response object</returns>
         /// <param name="path">Path.</param>

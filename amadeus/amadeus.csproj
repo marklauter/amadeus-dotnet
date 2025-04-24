@@ -22,6 +22,10 @@
 	<AssemblyVersion>3.0.0.0</AssemblyVersion>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<Nullable>enable</Nullable>
+	<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+	<GenerateDocumentationFile>False</GenerateDocumentationFile>
+	<ProduceReferenceAssembly>True</ProduceReferenceAssembly>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
