@@ -2,7 +2,8 @@
 
 public sealed record AmadeusOptions(
     Uri Host,
-    Version ClientVersion)
+    Version ClientVersion,
+    string ClientName)
 {
     public const string SectionName = "Amadeus";
 }
