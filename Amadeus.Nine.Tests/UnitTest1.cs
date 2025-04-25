@@ -79,7 +79,7 @@ public class UnitTest1
             .BuildServiceProvider();
 
         var client = services.GetRequiredService<AmadeusClient>();
-        await client.Ping(CancellationToken.None);
+        await client.PingAsync(CancellationToken.None);
         var verifier = services.GetRequiredService<AuthTokenVerifier>();
         Assert.True(verifier.HasToken);
     }
