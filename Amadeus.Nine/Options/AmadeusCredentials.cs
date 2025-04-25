@@ -1,5 +1,7 @@
-﻿namespace Amadeus.Nine.Options;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Amadeus.Nine.Options;
 
 public sealed record AmadeusCredentials(
-    string ApiKey,
-    string ApiSecret);
+    [Required] string ApiKey,
+    [Required] string ApiSecret);

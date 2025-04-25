@@ -1,4 +1,5 @@
-﻿using Amadeus.Nine.Tokens;
+﻿using Amadeus.Nine.Options;
+using Amadeus.Nine.Tokens;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -69,5 +70,63 @@ public class UnitTest1
     {
         var uri = new Uri(new Uri(host), tokenPath);
         Assert.Equal("https://test.api.amadeus.com/v1/security/oauth2/token", uri.ToString());
+    }
+
+    [Fact]
+    public async Task AuthHeaderIsAdded()
+    {
+        using var services = AddAmadeusClientForTest(new ServiceCollection(), configuration)
+            .BuildServiceProvider();
+
+        var client = services.GetRequiredService<AmadeusClient>();
+        await client.Ping(CancellationToken.None);
+        var verifier = services.GetRequiredService<AuthTokenVerifier>();
+        Assert.True(verifier.HasToken);
+    }
+
+    private sealed class AuthTokenVerifier
+        : DelegatingHandler
+    {
+        public bool HasToken { get; private set; }
+
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            HasToken = request.Headers.Authorization is not null;
+            return await base.SendAsync(request, cancellationToken);
+        }
+
+        protected override HttpResponseMessage Send(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            HasToken = request.Headers.Authorization is not null;
+            return base.Send(request, cancellationToken);
+        }
+    }
+
+    private static IServiceCollection AddAmadeusClientForTest(
+        IServiceCollection services,
+        IConfiguration configuration)
+    {
+        var options = configuration
+            .GetRequiredSection(AmadeusOptions.SectionName)
+            .Get<AmadeusOptions>()
+            ?? throw new InvalidOperationException($"can't read {nameof(AmadeusOptions)} in section {AmadeusOptions.SectionName}");
+
+        var credentials = configuration
+            .GetRequiredSection(nameof(AmadeusCredentials))
+            .Get<AmadeusCredentials>()
+            ?? throw new InvalidOperationException($"can't read {nameof(AmadeusCredentials)} in section {nameof(AmadeusCredentials)}");
+
+        _ = services
+            .AddSingleton(options)
+            .AddSingleton(credentials)
+            .AddTransient<AuthTokenHandler>()
+            .AddSingleton<AuthTokenVerifier>();
+
+        _ = services.AddHttpClient<TokenProvider>(client => client.BaseAddress = options.Host);
+        _ = services.AddHttpClient<AmadeusClient>()
+            .AddHttpMessageHandler<AuthTokenHandler>()
+            .AddHttpMessageHandler<AuthTokenVerifier>();
+
+        return services;
     }
 }

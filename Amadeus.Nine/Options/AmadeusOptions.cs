@@ -1,9 +1,11 @@
-﻿namespace Amadeus.Nine.Options;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Amadeus.Nine.Options;
 
 public sealed record AmadeusOptions(
-    Uri Host,
-    Version ClientVersion,
-    string ClientName)
+    [Required] Uri Host,
+    [Required] Version ClientVersion,
+    [Required] string ClientName)
 {
     public const string SectionName = "Amadeus";
 }

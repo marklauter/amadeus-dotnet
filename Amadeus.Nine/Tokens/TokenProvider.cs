@@ -126,7 +126,7 @@ internal sealed class TokenProvider(
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private HttpRequestMessage BuildMessage(FormUrlEncodedContent content)
     {
-        var message = new HttpRequestMessage(HttpMethod.Post, tokenEndpoint)
+        var message = new HttpRequestMessage(HttpMethod.Post, TokenPath)
         {
             Content = content,
         };

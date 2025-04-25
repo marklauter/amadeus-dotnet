@@ -11,10 +11,6 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        _ = services.AddHttpClient<AmadeusClient>();
-        _ = services.AddHttpClient<TokenProvider>();
-        // todo: configure the client message handler to deal with tokens
-
         var options = configuration
             .GetRequiredSection(AmadeusOptions.SectionName)
             .Get<AmadeusOptions>()
@@ -25,9 +21,15 @@ public static class ServiceCollectionExtensions
             .Get<AmadeusCredentials>()
             ?? throw new InvalidOperationException($"can't read {nameof(AmadeusCredentials)} in section {nameof(AmadeusCredentials)}");
 
-        return services
+        _ = services
             .AddSingleton(options)
             .AddSingleton(credentials)
-            .AddLogging();
+            .AddTransient<AuthTokenHandler>();
+
+        _ = services.AddHttpClient<TokenProvider>(client => client.BaseAddress = options.Host);
+        _ = services.AddHttpClient<AmadeusClient>()
+            .AddHttpMessageHandler<AuthTokenHandler>();
+
+        return services;
     }
 }
