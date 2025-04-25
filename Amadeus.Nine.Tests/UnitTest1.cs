@@ -12,6 +12,7 @@ public class UnitTest1
         {
             { "Amadeus:Host", "https://test.api.amadeus.com" },
             { "Amadeus:ClientVersion", "0.0.0" },
+            { "Amadeus:ClientName", "TWAI" },
         }!)
         .AddUserSecrets(Assembly.GetExecutingAssembly(), true, false)
         .Build();
@@ -57,5 +58,16 @@ public class UnitTest1
         var expected = await tokenProvider.ReadTokenAsync(CancellationToken.None);
         var actual = await tokenProvider.ReadTokenAsync(CancellationToken.None);
         Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData("https://test.api.amadeus.com/", "v1/security/oauth2/token")]
+    [InlineData("https://test.api.amadeus.com", "/v1/security/oauth2/token")]
+    [InlineData("https://test.api.amadeus.com/", "/v1/security/oauth2/token")]
+    [InlineData("https://test.api.amadeus.com", "v1/security/oauth2/token")]
+    public void UriBuildingWorksAsExpected(string host, string tokenPath)
+    {
+        var uri = new Uri(new Uri(host), tokenPath);
+        Assert.Equal("https://test.api.amadeus.com/v1/security/oauth2/token", uri.ToString());
     }
 }
