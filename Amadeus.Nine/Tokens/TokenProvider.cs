@@ -1,6 +1,7 @@
 ﻿using Amadeus.Nine.Locks;
 using Amadeus.Nine.Options;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -19,6 +20,7 @@ internal sealed class TokenProvider(
 
         public bool HasNotExpired => Expires > DateTime.UtcNow;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static CachedToken Create(string token, int expiresInSeconds)
         {
             var expireSpan = TimeSpan.FromSeconds(expiresInSeconds) - ClockSkew;
@@ -83,6 +85,7 @@ internal sealed class TokenProvider(
                     : await RequestTokenAsync(cancellationToken),
                 cancellationToken);
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static bool TokenIsReady() => Token is not null && Token.HasNotExpired;
 
     private async Task<string> RequestTokenAsync(CancellationToken cancellationToken)
@@ -105,6 +108,7 @@ internal sealed class TokenProvider(
         return Token.Token;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private FormUrlEncodedContent CreateContent()
     {
         var content = new FormUrlEncodedContent(
@@ -119,6 +123,7 @@ internal sealed class TokenProvider(
         return content;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private HttpRequestMessage BuildMessage(FormUrlEncodedContent content)
     {
         var message = new HttpRequestMessage(HttpMethod.Post, tokenEndpoint)
