@@ -39,19 +39,6 @@ internal sealed class AsyncLock
 
     public int Release() => latch.Release();
 
-    public async Task<TReturn> WithLockAsync<TReturn>(Func<CancellationToken, ValueTask<TReturn>> func, CancellationToken cancellationToken)
-    {
-        await NotDisposed().latch.WaitAsync(cancellationToken);
-        try
-        {
-            return await func(cancellationToken);
-        }
-        finally
-        {
-            _ = latch.Release();
-        }
-    }
-
     public async Task<TReturn> WithLockAsync<TReturn>(Func<CancellationToken, Task<TReturn>> func, CancellationToken cancellationToken)
     {
         await NotDisposed().latch.WaitAsync(cancellationToken);
