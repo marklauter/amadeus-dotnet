@@ -2,9 +2,8 @@
 using Amadeus.Nine.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using static Amadeus.Nine.Tests.Tokens.TokensTests;
 
-namespace Amadeus.Nine.Tests.Tokens;
+namespace Amadeus.Nine.Tests.Auth;
 
 internal sealed class TestClient(HttpClient httpClient)
 {

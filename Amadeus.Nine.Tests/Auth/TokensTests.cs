@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace Amadeus.Nine.Tests.Tokens;
+namespace Amadeus.Nine.Tests.Auth;
 
 public sealed partial class TokensTests
 {
