@@ -8,9 +8,5 @@ public sealed class AmadeusClient(
     AmadeusOptions options,
     ILogger<AmadeusClient> logger)
 {
-    public async Task PingAsync(CancellationToken cancellationToken)
-    {
-        using var request = new HttpRequestMessage(HttpMethod.Get, "http://microsoft.com");
-        using var response = await httpClient.SendAsync(request, cancellationToken);
-    }
+
 }
