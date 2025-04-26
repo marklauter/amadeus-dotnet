@@ -90,11 +90,9 @@ internal sealed class TokenProvider(
 
     private async Task<string> RequestTokenAsync(CancellationToken cancellationToken)
     {
-        using var message = BuildMessage(
-            CreateContent());
+        using var message = BuildRequest(CreateContent());
 
-        using var response = await httpClient
-            .SendAsync(message, cancellationToken);
+        using var response = await httpClient.SendAsync(message, cancellationToken);
 
         var content = await response.Content.ReadAsStringAsync(cancellationToken);
 
@@ -124,7 +122,7 @@ internal sealed class TokenProvider(
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private HttpRequestMessage BuildMessage(FormUrlEncodedContent content)
+    private HttpRequestMessage BuildRequest(FormUrlEncodedContent content)
     {
         var message = new HttpRequestMessage(HttpMethod.Post, TokenPath)
         {
