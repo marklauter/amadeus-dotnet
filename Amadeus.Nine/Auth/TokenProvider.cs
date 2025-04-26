@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Amadeus.Nine.Tokens;
+namespace Amadeus.Nine.Auth;
 
 internal sealed class TokenProvider(
     HttpClient httpClient,

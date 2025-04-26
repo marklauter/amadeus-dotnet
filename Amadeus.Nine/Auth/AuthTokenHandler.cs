@@ -1,7 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 
-namespace Amadeus.Nine.Tokens;
+namespace Amadeus.Nine.Auth;
 
 internal sealed class AuthTokenHandler(TokenProvider tokenProvider)
     : DelegatingHandler
