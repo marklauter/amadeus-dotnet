@@ -27,7 +27,7 @@ public static class ServiceCollectionExtensions
             .AddTransient<AuthTokenHandler>();
 
         _ = services.AddHttpClient<TokenProvider>(client => client.BaseAddress = options.Host);
-        _ = services.AddHttpClient<AmadeusClient>()
+        _ = services.AddHttpClient<AmadeusClient>(client => client.BaseAddress = options.Host)
             .AddHttpMessageHandler<AuthTokenHandler>();
 
         return services;
