@@ -1,4 +1,4 @@
-﻿using Amadeus.Nine.Tokens;
+﻿using Amadeus.Nine.Auth;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;

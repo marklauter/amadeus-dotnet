@@ -1,5 +1,5 @@
-﻿using Amadeus.Nine.Options;
-using Amadeus.Nine.Tokens;
+﻿using Amadeus.Nine.Auth;
+using Amadeus.Nine.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using static Amadeus.Nine.Tests.Tokens.TokensTests;
